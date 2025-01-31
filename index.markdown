@@ -4,3 +4,6 @@
 
 layout: home
 ---
+
+# About Me
+Hi, I'm [Your Name]. I am passionate about [your interests].
