@@ -48,5 +48,6 @@ In computational neuroscience, we analyze how real neurons encode sensory inputs
 
 ### 
 References use in this article:
+
 [^1]: Olah, et al., "Feature Visualization", Distill, 2017.
 
