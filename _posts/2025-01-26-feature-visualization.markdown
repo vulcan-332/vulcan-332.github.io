@@ -4,9 +4,7 @@ title:  "What is Feature Visualization in Neural Networks?"
 date:   2025-01-26 18:04:00 +0000
 categories: jekyll update
 ---
-# The goal of this article is to make the basics of interpretability easier to understand. Feature visualization is one step towards that.
-
-## This article is meant to be a short summary of the key ideas highlighted by C. Olah et al. in Feature visualization[^1].
+# The goal of this article is to make the basics of interpretability easier to understand. Feature visualization is one step towards that. It is meant to be a short summary of the key ideas highlighted by C. Olah et al. in Feature visualization[^1].
 
 ## Introduction 
 We know that a neural network optimizes its weights and biases through backpropagation. Backprop is an application of derivatives in neural networks where the gradient of the loss function with respect to each weight is calculated by propagating the error backward through the network. 
@@ -21,7 +19,7 @@ A good example of this is DeepDream, where the objective was to find images that
 Neurons may also fire for things that appear similar to the neuron but are not. For example, a particular group may show high activation for baseballs and car tire rims. The only similarity between them is that they may have the same visual pattern of stripes on them. This does not mean that pictures of baseballs or tires *cause* the neurons to activate, but rather, it is the pattern present in them that does. However, there is still a *correlation* between the images and the neurons firing. Therefore, instead of going through a dataset to find images that activate a neuron, it is better to find patterns and artifacts that do the same.
 
 <figure>
-  <img src="2025_01_26_feature_visualization/baseball.png" alt="Example Image">
+  <img src="/2025_01_26_feature_visualization/baseball.png" alt="Example Image">
   <figcaption>All of these images activate the same neuron layers[^1].</figcaption>
 </figure>
 
