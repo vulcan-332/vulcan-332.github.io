@@ -5,7 +5,7 @@
 layout: home
 ---
 
-Hi, I'm Khojasteh. I am a researcher at Mount Sinai NYC, Department of Neuroscience at the Schaffer Lab. 
+Hi, I'm Khojasteh. I am a researcher at Mount Sinai NYC, [Department of Neuroscience](https://icahn.mssm.edu/research/friedman) at the [Schaffer Lab](https://www.schafferlab.com/). 
 I build artificial neural networks that are inspired by biological neural networks. 
 
 I am researching how a specific brain region (S1DZ) functions by building deep learning models with reinforcement learning. These models aim to mimic proprioceptive feedback. I then compare the network’s activations with real neural activity. I am also interested in the interpretability of networks, and understanding what's happening inside them through reverse engineering. 
