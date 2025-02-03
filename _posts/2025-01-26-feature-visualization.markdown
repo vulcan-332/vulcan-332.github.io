@@ -19,8 +19,8 @@ A good example of this is DeepDream, where the objective was to find images that
 Neurons may also fire for things that appear similar to the neuron but are not. For example, a particular group may show high activation for baseballs and car tire rims. The only similarity between them is that they may have the same visual pattern of stripes on them. This does not mean that pictures of baseballs or tires *cause* the neurons to activate, but rather, it is the pattern present in them that does. However, there is still a *correlation* between the images and the neurons firing. Therefore, instead of going through a dataset to find images that activate a neuron, it is better to find patterns and artifacts that do the same.
 
 <figure style="text-align: center;">
-  <img src="/2025_01_26_feature_visualization/baseball.png" alt="Example Image">
-  <figcaption style="text-align: center;">All of these images activate the same neuron layers[^1].</figcaption>
+  <img src="/2025_01_26_feature_visualization/baseball.png" alt="Example Image" style="display: block; margin: auto;">
+  <figcaption style="text-align: center;">All of these images activate the same neuron layers[^1] .</figcaption>
 </figure>
 
 
@@ -30,12 +30,12 @@ But there’s a problem. We now know that some neurons activate with stripes. In
 It's easier to think of diversity as a parabolic curve. A particular feature (for example, stripes) activates a neuron maximally, but that does not mean that it's the only thing the neuron reacts to. Other points on the parabolic curve also have high activations. Not the highest maybe, but still worthy of note. These other points on the curve/ features help us understand more things that the neuron layer is reacting to. These adjacent features are created with a ‘diversity term’ that is added while the noise image is being optimized. From one noise block, now we not only have an optimized image that activates the neurons but also a second image that activates the neurons but is different from the first. The diversity term is implemented by calculating the Gram Matrix[^3] and then minimizing the pairwise cosine similarity[^4]. 
 
 <figure style="text-align: center;">
-  <img src="/2025_01_26_feature_visualization/pre_optimization.png" alt="Example Image">
+  <img src="/2025_01_26_feature_visualization/pre_optimization.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">A simple optimized image.</figcaption>
 </figure> 
 
 <figure style="text-align: center;">
-  <img src="/2025_01_26_feature_visualization/simple_optimization.png" alt="Example Image">
+  <img src="/2025_01_26_feature_visualization/simple_optimization.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">An example of diversity-based optimization.</figcaption>
 </figure> 
 
@@ -44,7 +44,7 @@ Each image is similar, and activates the same neurons, but has slightly differen
 When tested on real images, the same neurons activate for fur/ brown dogs.  
 
 <figure style="text-align: center;">
-  <img src="/2025_01_26_feature_visualization/dogs.png" alt="Example Image">
+  <img src="/2025_01_26_feature_visualization/dogs.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Images that cause the same neurons to activate as the diversity based optimized ones.</figcaption>
 </figure> 
 
