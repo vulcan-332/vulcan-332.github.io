@@ -61,7 +61,7 @@ Many times, instead of optimizing for recognizable patterns, like eyes/textures/
 In computational neuroscience, we analyze how real neurons encode sensory inputs and form feature representations in the brain. Feature visualization in deep learning serves a similar role: it helps us understand what artificial neurons in a neural network are detecting at different layers. Understanding either of them is beneficial to understanding the other. A simple parallel is how early layers of a CNN detect edges and textures (like V1 neurons) while deeper layers detect more complex patterns. The surprising thing is that we did not explicitly design artificial networks to behave this way, all we know is they do. In the context of image generation, one effective preconditioning method is to perform gradient descent in the Fourier domain. By transforming the image into its frequency components and scaling these frequencies to have equal energy (a process known as whitening), the optimization process can be guided to avoid undesirable high-frequency artifacts and focus on more meaningful structures[^11]. 
 
 
-## References use in this article:
+## References used in this article:
 
 [^1]: Olah, et al., "Feature Visualization", Distill, 2017.
 
