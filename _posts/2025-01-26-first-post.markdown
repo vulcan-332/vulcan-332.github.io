@@ -7,7 +7,7 @@ categories: jekyll update
 
 The goal of this article is to make the basics of interpretability easier to understand. 
 
-Feature visualization [^1] is one step towards that. 
+Feature visualization[^1] is one step towards that. 
 
 We know that a neural network optimizes its weights and biases through backpropagation. Backprop is an application of derivatives in neural networks where the gradient of the loss function with respect to each weight is calculated by propagating the error backward through the network. 
 
