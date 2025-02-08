@@ -20,13 +20,13 @@
 favicon: "/favicon/Screenshot 2025-02-02 225016.png"
 
 title: 🧠  Khojasteh Mirza
-email: kzm6[at]cornell[dot]edu
+email: kzm6 [at] cornell [dot] edu
 description: >- # this means to ignore newlines until "baseurl:"
   #
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: PowerFuelPanda
+github_username:  vulcan-332
 
 # Build settings
 theme: minima
