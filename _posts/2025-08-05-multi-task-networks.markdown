@@ -5,7 +5,6 @@ date:   2025-08-17 18:04:00 +0000
 categories: jekyll update
 ---
 
-# Task-ID Conditioning as a Baseline for Multi-Task and Continual Learning
 
 This article investigates whether a single, relatively small neural network can learn several different tasks without catastrophic forgetting. The study is framed as a mini-lab for multi-task and continual learning. The baseline is deliberately simple: concatenate a **task identifier** with the numeric input and train one multilayer perceptron (MLP) end-to-end. Task-ID conditioning therefore serves as a transparent baseline against which more advanced continual learning methods, such as Elastic Weight Consolidation (EWC) and replay strategies, can be compared.
 
@@ -28,13 +27,13 @@ The experiments show that while task-ID conditioning enables the network to fit 
 
 ## Problem Setup
 
-Five noiseless scalar regression tasks are defined on \(x \in [0.01, 2.01]\):
+Five noiseless scalar regression tasks are defined on x ∈ [0.01, 2.02]:
 
-- **Task A:** \(y = 10 - 5x\)  
-- **Task B:** \(y = e^x\)  
-- **Task C:** \(y = \ln(20x)\)  
-- **Task D:** \(y = x^3\)  
-- **Task E:** \(y = 10 \sin(x)\)
+- **Task A:** y = 10 - 5x
+- **Task B:** y = eˣ
+- **Task C:** y = ln(20x)  
+- **Task D:** y = x³
+- **Task E:** y = 10sin(x)
 
 The network must not only learn each function accurately, but also switch between tasks depending on the task code.
 
@@ -63,19 +62,12 @@ Similarly, Task B uses task_id = 1, Task C = 2, and so on.
 
 The network successfully fits all five tasks when trained jointly, achieving low error across each function. However, when trained sequentially, clear interference emerges: performance on earlier tasks deteriorates after training on later ones.
 
-### Figure 1 — Joint Training
+<figure style="text-align: center;">
+  <img src="/2025_08_05_multi_task_networks/results.png" alt="Example Image" style="display: block; margin: auto;">
+  <figcaption style="text-align: center;">Results from task_id conditioned training .</figcaption>
+</figure> 
+
 Plots of predictions vs. ground truth for each task show that the model approximates each function well when all tasks are trained together.
-
-### Figure 2 — Sequential Training
-A heatmap of per-task performance after each training stage highlights forgetting. Accuracy on earlier tasks (e.g., Task A and B) declines after training later tasks such as Task D and E.
-
----
-
-## Ablations
-
-- **Task conditioning:** Scalar codes vs. one-hot encodings vs. learned embeddings. One-hot encodings reduce interference slightly, while learned embeddings allow smoother sharing across tasks.
-- **Normalization:** Per-task standardization stabilizes training by balancing loss scales across tasks.
-- **Model capacity:** Wider hidden layers improve stability but at the cost of overfitting.
 
 ---
 
