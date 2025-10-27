@@ -39,6 +39,14 @@ include:
 head_scripts:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  math_engine_opts:
+    preview: false
+
 
 
 # Exclude from processing.
