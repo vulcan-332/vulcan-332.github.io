@@ -5,7 +5,7 @@ date:   2025-12-07 18:38:00 +0000
 categories: [reinforcement-learning]
 ---
 
-Note: This post will be updated as I implement different types of RL models. Code can be found here: 
+Note: This post will be updated as I implement different types of RL models. Code can be found here: https://github.com/vulcan-332/deep_rl
 
 The purpose of this post is to implement different RL algorithms in code, going beyond theory. The examples will focus on simple environments to make it easier to understand the inner workings of the algorithms. For speeding up the setup, environments are pre-built and imported from Gymnasium[^1]. For the theoretical background, [^2] and [^3] are some great sources to begin with.
 
