@@ -5,6 +5,8 @@ date:   2026-03-14 13:00:00 +0000
 categories: jekyll update
 ---
 
+Project Repository: https://github.com/vulcan-332/latent_dynamics
+ 
 # Introduction
 
 <figure style="text-align: center;">
