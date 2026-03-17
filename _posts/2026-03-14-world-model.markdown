@@ -8,7 +8,7 @@ categories: jekyll update
 # Introduction
 
 <figure style="text-align: center;">
-  <img src="2026_03_14_world_model/flowchart.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/flowchart.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Project Overview</figcaption>
 </figure> 
 
@@ -47,9 +47,7 @@ That makes CartPole a good microscope:
 - small enough that qualitative debugging still matters.
 
 
-## The system at a glance
-
-
+## The system
 The project has two separate learning problems:
 
 1. Representation learning 
@@ -150,15 +148,14 @@ That made the question much cleaner:
 Result:
 
 <figure style="text-align: center;">
-  <img src="2026_03_14_world_model/loss_both.png.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/loss_both.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Controller Loss</figcaption>
 </figure> 
 
 <figure style="text-align: center;">
-  <img src="2026_03_14_world_model/acc.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/acc.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Controller Accuarcy</figcaption>
 </figure> 
-
 
 The policy trained on the true observation vector learned faster and reached higher final accuracy. The policy trained on z also learned well, but plateaued slightly worse.
 
@@ -213,7 +210,7 @@ This is the actual imagination setting. Now any small error in one step gets fed
 - **rollout loss increased over time**
 
 <figure style="text-align: center;">
-  <img src="2026_03_14_world_model/rollout_loss.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/rollout_loss.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Rollout Loss</figcaption>
 </figure> 
 
@@ -223,12 +220,12 @@ This result is not surprising, but it is important. It means the model is locall
 If the model makes a small error at step 1, then at step 2 it is already predicting from a slightly incorrect state. That new prediction is a little worse. After a few steps, the model is operating on latent states that do not correspond to anything it saw during training, and the trajectory diverges. This is often called **compounding error** or **temporal drift** and is probably the single most useful diagnostic I got from the whole project.
 
 <figure style="text-align: center;">
-  <img src="2026_03_14_world_model/teacher_forcing_predictions.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/teacher_forcing_predictions.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Teacher Forcing Decoded States</figcaption>
 </figure> 
 
 <figure style="text-align: center;">
-  <img src="2026_03_14_world_model/rollout_predictions.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/rollout_predictions.png" alt="Example Image" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Rollout Decoded States</figcaption>
 </figure> 
 
@@ -258,7 +255,13 @@ Solutions could be:
 1. Temporal latent state: Ecode two consecutive frames instead of one. That should help the model infer velocity information. 
 2. Multistep dyanmics loss: Train the model for more than just one-step prediciton, evaluate loss on short 3-5 step rollouts during training itself. This will require a deeper model, and an more training time. 
 
+# References and Further Reading:
+A good repo for all things related to world modeling: https://github.com/nik-55/world-models?tab=readme-ov-file
 
-[^1]: https://openaccess.thecvf.com/content/CVPR2023/html/Assran_Self-Supervised_Learning_From_Images_With_a_Joint-Embedding_Predictive_Architecture_CVPR_2023_paper.html
+[^1]: Assran, Mahmoud, et al. "Self-supervised learning from images with a joint-embedding predictive architecture." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2023. https://openaccess.thecvf.com/content/CVPR2023/html/Assran_Self-Supervised_Learning_From_Images_With_a_Joint-Embedding_Predictive_Architecture_CVPR_2023_paper.html
 
-[^2]: https://arxiv.org/abs/2506.09985
+[^2]: Assran, Mido, et al. "V-jepa 2: Self-supervised video models enable understanding, prediction and planning." arXiv preprint arXiv:2506.09985 (2025). https://arxiv.org/abs/2506.09985
+
+[^3]: Ha, David, and Jürgen Schmidhuber. "World models." arXiv preprint arXiv:1803.10122 2.3 (2018): 440. https://arxiv.org/abs/1803.10122
+
+[^4]: Hafner, Danijar, et al. "Learning latent dynamics for planning from pixels." International conference on machine learning. PMLR, 2019. https://icml.cc/media/icml-2019/Slides/5147.pdf
