@@ -8,13 +8,13 @@ categories: jekyll update
 # Introduction
 
 <figure style="text-align: center;">
-  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/flowchart.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="{{ '/2026_03_14_world_model/flowchart.png' | relative_url }}" alt="World model project flowchart" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Project Overview</figcaption>
 </figure> 
 
 World models are appealing because they promise something simple and powerful: instead of reacting only to the current observation, an agent can learn an internal simulator of the environment and use that simulator to imagine the future.
 
-The most recent push with JEPA [^1], V-JEPA 2 [^2]  and other 'large world model' architectcures argue that true intelligence can be achieved not through language, but by understanding interactions of any two systems.  
+The most recent push with JEPA [^1], V-JEPA 2 [^2], and earlier latent world-model work such as World Models [^3] and PlaNet-style latent dynamics [^4] argue that true intelligence can be achieved not through language, but by understanding interactions of any two systems.
 
 That idea shows up everywhere now, in model-based reinforcement learning, robotics, video prediction, and latent planning. But in practice, “I trained a world model” can mean very different things. A model that reconstructs frames well is not necessarily a model that can predict future states well. A model that predicts the next step well is not necessarily a model that can roll out ten steps without drifting off course.
 
@@ -58,7 +58,9 @@ Learn a latent state $z_t$ from the image $x_t$.
 
 Learn how that latent changes when an action is applied:
 
-$(z_t, a_t) -> M -> z_{t+1}$
+$$
+(z_t, a_t) \xrightarrow{M} z_{t+1}
+$$
 
 Once both parts are trained, the system can “imagine” future latent states by repeatedly applying the dynamics model (M). That is the core world-model loop.
 
@@ -84,9 +86,9 @@ That made the representation problem much better behaved. This was one of the fi
 
 The first model is an autoencoder:
 
-encoder $E(x_t) -> z_t$
+encoder $E(x_t) \to z_t$
 
-decoder $D(z_t) -> x̂_t$
+decoder $D(z_t) \to \hat{x}_t$
 
 trained with reconstruction loss ${L}_{rec} = \|x_t - \hat{x}_t\|^2$
 
@@ -100,7 +102,10 @@ The next question then becomes: Does this latent representation vector contain e
 
 # Step 3: Learning latent dynamics
 Once frames were encoded into latents, I trained a dynamics model M :
-$(z_t, a_t) -> M -> z_{t+1}$ using a simple MLP. 
+$$
+(z_t, a_t) \xrightarrow{M} z_{t+1}
+$$
+using a simple MLP.
 
 The input was:
 - latent state $z_t$
@@ -148,12 +153,12 @@ That made the question much cleaner:
 Result:
 
 <figure style="text-align: center;">
-  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/loss_both.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="{{ '/2026_03_14_world_model/loss_both.png' | relative_url }}" alt="Controller loss comparison" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Controller Loss</figcaption>
 </figure> 
 
 <figure style="text-align: center;">
-  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/acc.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="{{ '/2026_03_14_world_model/acc.png' | relative_url }}" alt="Controller accuracy comparison" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Controller Accuarcy</figcaption>
 </figure> 
 
@@ -192,7 +197,9 @@ To separate those two questions, I used two evaluation modes.
 
 At each step, the dynamics model receives the **true** current latent $z_t$ from the encoder and predicts the next latent.
 
-$z_t (true) --> M --> \hat{z}_{t+1}$
+$$
+z_t \text{ (true)} \xrightarrow{M} \hat{z}_{t+1}
+$$
 
 This is a one-step prediction test.
 
@@ -202,7 +209,9 @@ If teacher forcing loss is low, then the model knows how to make local predictio
 
 At each step, the dynamics model receives **its own previous prediction**.
 
-$\hat{z}_t --M--> \hat{z}_{t+1} --M--> \hat{z}_{t+2} --M--> ...$
+$$
+\hat{z}_t \xrightarrow{M} \hat{z}_{t+1} \xrightarrow{M} \hat{z}_{t+2} \xrightarrow{M} \cdots
+$$
 
 This is the actual imagination setting. Now any small error in one step gets fed into the next step, so mistakes can accumulate. Result shows:
 
@@ -210,7 +219,7 @@ This is the actual imagination setting. Now any small error in one step gets fed
 - **rollout loss increased over time**
 
 <figure style="text-align: center;">
-  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/rollout_loss.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="{{ '/2026_03_14_world_model/rollout_loss.png' | relative_url }}" alt="Rollout loss over time" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Rollout Loss</figcaption>
 </figure> 
 
@@ -220,12 +229,12 @@ This result is not surprising, but it is important. It means the model is locall
 If the model makes a small error at step 1, then at step 2 it is already predicting from a slightly incorrect state. That new prediction is a little worse. After a few steps, the model is operating on latent states that do not correspond to anything it saw during training, and the trajectory diverges. This is often called **compounding error** or **temporal drift** and is probably the single most useful diagnostic I got from the whole project.
 
 <figure style="text-align: center;">
-  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/teacher_forcing_predictions.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="{{ '/2026_03_14_world_model/teacher_forcing_predictions.png' | relative_url }}" alt="Decoded teacher forcing predictions" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Teacher Forcing Decoded States</figcaption>
 </figure> 
 
 <figure style="text-align: center;">
-  <img src="/Users/kmirza/projects/vulcan-332.github.io/2026_03_14_world_model/rollout_predictions.png" alt="Example Image" style="display: block; margin: auto;">
+  <img src="{{ '/2026_03_14_world_model/rollout_predictions.png' | relative_url }}" alt="Decoded rollout predictions" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Rollout Decoded States</figcaption>
 </figure> 
 
