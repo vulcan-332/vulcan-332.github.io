@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="home home-layout">
+  <div class="home-main">
+    {%- if page.title -%}
+      <h1 class="page-heading">{{ page.title }}</h1>
+    {%- endif -%}
+
+    {{ content }}
+  </div>
+
+  {%- if site.posts.size > 0 -%}
+    <aside class="post-sidebar" aria-label="Writing">
+      <p class="sidebar-kicker">Writing</p>
+      <h2>Research notes</h2>
+      <ul class="sidebar-post-list">
+        {%- for post in site.posts -%}
+          <li>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <p class="rss-subscribe"><a href="{{ "/feed.xml" | relative_url }}">Subscribe via RSS</a></p>
+    </aside>
+  {%- endif -%}
+</div>

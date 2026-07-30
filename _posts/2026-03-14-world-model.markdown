@@ -117,7 +117,7 @@ The target was the latent of the next frame, $z_{t+1}$
 
 This is the simplest possible latent dynamics model. No recurrence, no transformer, no latent stochasticity. Just a feedforward predictor.
 
-## Defintion of state
+## Definition of state
 
 A true state in control is supposed to be Markov: it contains enough information to predict the future. That becomes important later.
 A single image frame often gives you:
@@ -161,7 +161,7 @@ Result:
 
 <figure style="text-align: center;">
   <img src="{{ '/2026_03_14_world_model/acc.png' | relative_url }}" alt="Controller accuracy comparison" style="display: block; margin: auto;">
-  <figcaption style="text-align: center;">Controller Accuarcy</figcaption>
+  <figcaption style="text-align: center;">Controller Accuracy</figcaption>
 </figure> 
 
 The policy trained on the true observation vector learned faster and reached higher final accuracy. The policy trained on z also learned well, but plateaued slightly worse.

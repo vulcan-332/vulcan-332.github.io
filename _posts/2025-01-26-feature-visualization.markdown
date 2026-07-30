@@ -12,7 +12,7 @@ We know that a neural network optimizes its weights and biases through backpropa
 In contrast to that, feature visualization uses the same gradients to modify the input data to maximize the activation of one specific neuron or layer of neurons. 
 
 ## Optimization
-This is the step where we generate an image that activates a particular neuron/ layer in a network. Instead of starting with real images and checking for each one, we start with just a grid of noise and *optimize* the noisy grid with gradient ascent to make the chosen neurons fire as strongly as possible.
+This is the step where we generate an image that activates a particular neuron/layer in a network. Instead of starting with real images and checking for each one, we start with just a grid of noise and *optimize* the noisy grid with gradient ascent to make the chosen neurons fire as strongly as possible.
 
 A good example of this is DeepDream, where the objective was to find images that a whole layer finds interesting[^2].
 
@@ -27,7 +27,7 @@ Neurons may also fire for things that appear similar to the neuron but are not. 
 But there’s a problem. We now know that some neurons activate with stripes. Instead, the question we should be asking is, do these neurons only activate with stripes? A single neuron or layer in a neural network can respond to multiple different patterns, but traditional optimization methods often result in only one specific pattern being discovered. This means that multiple diverse patterns could activate the same neuron, but optimization tends to find only one of them. The solution is exploring diversity.
 
 ## Diversity
-It's easier to think of diversity as a parabolic curve. A particular feature (for example, stripes) activates a neuron maximally, but that does not mean that it's the only thing the neuron reacts to. Other points on the parabolic curve also have high activations. Not the highest maybe, but still worthy of note. These other points on the curve/ features help us understand more things that the neuron layer is reacting to. These adjacent features are created with a ‘diversity term’ that is added while the noise image is being optimized. From one noise block, now we not only have an optimized image that activates the neurons but also a second image that activates the neurons but is different from the first. The diversity term is implemented by calculating the Gram Matrix[^3] and then minimizing the pairwise cosine similarity[^4]. 
+It's easier to think of diversity as a parabolic curve. A particular feature (for example, stripes) activates a neuron maximally, but that does not mean that it's the only thing the neuron reacts to. Other points on the parabolic curve also have high activations. Not the highest maybe, but still worthy of note. These other points on the curve/features help us understand more things that the neuron layer is reacting to. These adjacent features are created with a ‘diversity term’ that is added while the noise image is being optimized. From one noise block, now we not only have an optimized image that activates the neurons but also a second image that activates the neurons but is different from the first. The diversity term is implemented by calculating the Gram Matrix[^3] and then minimizing the pairwise cosine similarity[^4]. 
 
 <figure style="text-align: center;">
   <img src="/2025_01_26_feature_visualization/pre_optimization.png" alt="Example Image" style="display: block; margin: auto;">
@@ -41,7 +41,7 @@ It's easier to think of diversity as a parabolic curve. A particular feature (fo
 
 Each image is similar, and activates the same neurons, but has slightly different features (up/down arcs, circles/squares). Therefore, we now know that the neurons not only activate when shown the upward arcs but in general when shown a brown, fur-like texture[^1].
 
-When tested on real images, the same neurons activate for fur/ brown dogs.  
+When tested on real images, the same neurons activate for brown, furry dogs.  
 
 <figure style="text-align: center;">
   <img src="/2025_01_26_feature_visualization/dogs.png" alt="Example Image" style="display: block; margin: auto;">
@@ -84,4 +84,3 @@ In computational neuroscience, we analyze how real neurons encode sensory inputs
 [^10]: Nguyen, Anh, et al. "Synthesizing the preferred inputs for neurons in neural networks via deep generator networks." Advances in neural information processing systems 29 (2016).
 
 [^11]: Mordvintsev, et al., "Differentiable Image Parameterizations", Distill, 2018.
-

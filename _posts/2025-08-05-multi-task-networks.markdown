@@ -64,7 +64,7 @@ The network successfully fits all five tasks when trained jointly, achieving low
 
 <figure style="text-align: center;">
   <img src="/2025_08_05_multi_task_networks/results.png" alt="Example Image" style="display: block; margin: auto;">
-  <figcaption style="text-align: center;">Results from task_id conditioned training .</figcaption>
+  <figcaption style="text-align: center;">Results from task-ID-conditioned training.</figcaption>
 </figure> 
 
 Plots of predictions vs. ground truth for each task show that the model approximates each function well when all tasks are trained together.
